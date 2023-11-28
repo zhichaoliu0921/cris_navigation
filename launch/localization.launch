@@ -12,7 +12,7 @@
   </group>
 
   <!-- Load map -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find tutorial_pkg)/maps/$(arg map_name)" respawn="true" />
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find cris_navigation)/maps/$(arg map_name)" respawn="true" />
 
   <!-- AMCL localizer -->
   <node pkg="amcl" type="amcl" name="amcl" output="screen">

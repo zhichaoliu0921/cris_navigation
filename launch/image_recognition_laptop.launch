@@ -15,7 +15,7 @@
     <node pkg="find_object_2d" type="find_object_2d" name="find_object_2d">
         <remap from="image" to="/rgb_decompressed"/>
         <param name="gui" value="$(arg teach)"/>
-        <param unless="$(arg teach)" name="objects_path" value="$(find tutorial_pkg)/img_data/"/>
+        <param unless="$(arg teach)" name="objects_path" value="$(find cris_navigation)/img_data/"/>
     </node>
 
 </launch>
