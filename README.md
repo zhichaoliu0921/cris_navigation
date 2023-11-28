@@ -10,5 +10,7 @@ How to use:
 6) `docker build -t cris_navigation .`
 7)  `sudo ./run_image.bash`
 8) `roslaunch cris_navigation move_base.launch`
+
 for mapping
+
 8) `roslaunch cris_navigation slam.launch`
