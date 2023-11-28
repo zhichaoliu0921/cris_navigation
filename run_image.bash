@@ -18,5 +18,5 @@ docker run -it \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
     --runtime=nvidia \
-    my_image \
+    cris_navigation \
     bash

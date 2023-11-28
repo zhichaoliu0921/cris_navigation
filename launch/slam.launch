@@ -1,22 +1,33 @@
 <launch>
 
-  <arg name="use_gazebo" default="false" />
+  <arg name="use_gazebo" default="true" />
 
   <!-- Gazebo -->
   <group if="$(arg use_gazebo)">
       <param name="use_sim_time" value="true" />
-      <include file="$(find rosbot_bringup)/launch/rosbot_tutorial.launch">
+      <!-- <include file="$(find rosbot_bringup)/launch/rosbot_tutorial.launch">
           <arg name="world" value="maze" />
-      </include>
+      </include> -->
+    <include file="$(find rosbot_bringup)/launch/rosbot_gazebo.launch"/>
+
+    <include file="$(find rosbot_gazebo)/launch/rosbot_world.launch">
+        <arg name="world" value="$(find aws_robomaker_small_house_world)/worlds/small_house.world"/>
+    </include>
+
   </group>
+
+  <param name="robot_description" command="$(find xacro)/xacro '$(find rosbot_description)/urdf/rosbot.xacro'"/>
+
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rosbot_description)/rviz/mapping.rviz" required="true" output="screen"/>
   
   <!-- SLAM -->
-  <node pkg="gmapping" type="slam_gmapping" name="gmapping">
+  <node pkg="gmapping" type="slam_gmapping" name="gmapping_node" output="log">
       <param name="base_frame"            value="base_link"/>
       <param name="odom_frame"            value="odom" />
       <param name="map_update_interval"   value="3.0"/>
       <param name="maxUrange"             value="15.0"/>
-  </node>
+    </node>
 
   <!-- Teleoperation - keyboard control -->
   <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen"/>

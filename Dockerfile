@@ -22,6 +22,7 @@ COPY . src/cris_navigation
 # clone robot github repositories
 RUN git clone https://github.com/husarion/rosbot_ros.git --branch=noetic src/rosbot_ros && \
     git clone https://github.com/husarion/rosbot_ekf.git --branch=master src/rosbot_ekf && \
+    git clone https://github.com/aws-robotics/aws-robomaker-small-house-world.git --branch=ros1 src/aws-robomaker-small-house-world && \
     rosdep update && \
     rosdep install --from-paths src --ignore-src -r -y
 

@@ -1,7 +1,7 @@
 <launch>
 
-   <arg name="use_gazebo" default="false" />
-   <arg name="map_name" default="map.yaml"/>
+   <arg name="use_gazebo" default="true" />
+   <arg name="map_name" default="small_room.yaml"/>
 
    <!-- Localization -->
    <include file="$(find cris_navigation)/launch/localization.launch">
