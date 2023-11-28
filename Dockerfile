@@ -13,13 +13,15 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 
 RUN sudo apt update && apt install python3-rosdep git-all -y
 
+RUN mkdir src 
+
 WORKDIR /ros_ws
 
+ADD ./* src/cris_navigation
+
 # clone robot github repositories
-RUN mkdir src && \
-	git clone https://github.com/husarion/rosbot_ros.git --branch=noetic src/rosbot_ros && \
-	git clone https://github.com/husarion/rosbot_ekf.git --branch=master src/rosbot_ekf && \
-	ADD ./* src/cris_navigation && \
+RUN git clone https://github.com/husarion/rosbot_ros.git --branch=noetic src/rosbot_ros && \
+    git clone https://github.com/husarion/rosbot_ekf.git --branch=master src/rosbot_ekf && \
     rosdep update && \
     rosdep install --from-paths src --ignore-src -r -y
 
